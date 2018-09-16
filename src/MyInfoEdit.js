@@ -18,17 +18,13 @@ export default class MyInfoEdit extends Component<Props> {
     const {navigate} = this.props.navigation;
     return (
         <SectionList
-            renderItem={({ item, index, section }) => <Button style={styles.button1} title="下一页" onPress={() => {
+            renderItem={({ item, index, section }) => <Button style={styles.button1} title={item} onPress={() => {
                 navigate('UpdateMobile');
             }}/>
             }
-            renderSectionHeader={({ section: { title } }) => (
-                <Text style={{ fontWeight: "bold" }}>{title}</Text>
-            )}
             sections={[
-                { title: "Title1", data: ["item1", "item2"] },
-                { title: "Title2", data: ["item3", "item4"] },
-                { title: "Title3", data: ["item5", "item6"] }
+                { title: "个人头像", data: ["个人头像"] },
+                { title: "姓名", data: ["姓名", "性别", "家庭住址", "工作经验", "手机号码"] }
             ]}
             keyExtractor={(item, index) => item + index}
         />
