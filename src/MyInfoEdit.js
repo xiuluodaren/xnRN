@@ -17,16 +17,18 @@ export default class MyInfoEdit extends Component<Props> {
   render() {
     const {navigate} = this.props.navigation;
     return (
-        <SectionList
-            renderItem={({ item, index, section }) => <Button style={styles.button1} title={item} onPress={() => {
-                navigate('UpdateMobile');
-            }}/>
-            }
+        <SectionList style={styles.SectionListStyle}
+            renderItem={({ item, index, section }) => <Text style={styles.button} key={index}>{item}</Text>}
             sections={[
-                { title: "个人头像", data: ["个人头像"] },
-                { title: "姓名", data: ["姓名", "性别", "家庭住址", "工作经验", "手机号码"] }
+                { data: ["个人头像"] },
+                { data: ["姓名", "性别", "家庭住址", "工作经验", "手机号码"] }
             ]}
             keyExtractor={(item, index) => item + index}
+            ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#EEEEEE'}}/>}
+            SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#EEEEEE'}}/>}
+            recordInteraction = {() =>{
+                navigate('UpdateMobile');
+            }}
         />
 
     );
@@ -34,20 +36,18 @@ export default class MyInfoEdit extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    button:{
+        color:'#000000',
+        textAlign : 'left',
+        flex:1,
+        backgroundColor:'#ffffff',
+        height:44,
+        fontSize:17,
+        paddingTop:10,
+        paddingLeft:20
+    },
+    SectionListStyle:{
+        marginTop:5,
+        backgroundColor: '#EEEEEE'
+    }
 });

@@ -17,7 +17,7 @@ export default class MyInfoEdit extends Component<Props> {
   render() {
     return (
         <SectionList
-            renderItem={({ item, index, section }) => <Text key={index}>{item}</Text>}
+            renderItem={({ item, index, section }) => <Text style={styles.button} key={index}>{item}</Text>}
             renderSectionHeader={({ section: { title } }) => (
                 <Text style={{ fontWeight: "bold" }}>{title}</Text>
             )}
@@ -50,4 +50,10 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+    button:{
+        color:'#000000',
+        textAlign : 'left',
+        flex:1,
+        backgroundColor:'#f0f'
+    }
 });
