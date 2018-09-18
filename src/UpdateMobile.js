@@ -7,53 +7,96 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet,SectionList, Text, View} from 'react-native';
+import {Platform, StyleSheet, SectionList, Text, Button, View, Image, TouchableOpacity, TextInput} from 'react-native';
 
-type Props = {};
+type
+Props = {};
 export default class MyInfoEdit extends Component<Props> {
     static navigationOptions = {
         title: '修改手机',
+        headerTitleStyle: {
+            //居中显示
+            alignSelf : 'center',
+        }
     };
-  render() {
-    return (
-        <SectionList
-            renderItem={({ item, index, section }) => <Text style={styles.button} key={index}>{item}</Text>}
-            renderSectionHeader={({ section: { title } }) => (
-                <Text style={{ fontWeight: "bold" }}>{title}</Text>
-            )}
-            sections={[
-                { title: "Title1", data: ["item1", "item2"] },
-                { title: "Title2", data: ["item3", "item4"] },
-                { title: "Title3", data: ["item5", "item6"] }
-            ]}
-            keyExtractor={(item, index) => item + index}
-        />
 
-    );
-  }
+    render() {
+        const {navigate} = this.props.navigation;
+        return (
+            <SectionList style={styles.SectionListStyle}
+                         renderItem={({item, index, section}) => (
+                             <View  style={styles.list}>
+                                 <Text style={styles.button} key={index}>{item}</Text>
+                                 <TextInput
+                                     style={styles.textInput}
+                                     placeholder={"请输入" + item}
+                                     onChangeText={(text) => this.setState({text})}
+                                     underlineColorAndroid="transparent"
+                                     keyboardType="phone-pad"
+                                 />
+                             </View>
+                         )
+                         }
+                         sections={[
+                             {data: ["手机号", "验证码"]}
+                         ]}
+                         keyExtractor={(item, index) => item + index}
+                         ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#EEEEEE'}}/>}
+                         SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#EEEEEE'}}/>}
+                         recordInteraction={() => {
+                             navigate('UpdateMobile');
+                         }}
+            />
+
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-    button:{
-        color:'#000000',
-        textAlign : 'left',
-        flex:1,
-        backgroundColor:'#f0f'
+    button: {
+        color: '#000000',
+        textAlign: 'left',
+        backgroundColor: '#FFFFFF',
+        height: 44,
+        fontSize: 17,
+        paddingTop: 10,
+        paddingLeft: 20,
+        width:80
+    },
+    header: {
+        color: '#000000',
+        textAlign: 'left',
+        flex: 1,
+        backgroundColor: '#ffffff',
+        height: 100,
+        fontSize: 17,
+        paddingTop: 40,
+        paddingLeft: 20
+    },
+    SectionListStyle: {
+        marginTop: 5,
+        backgroundColor: '#EEEEEE'
+    },
+    avatar: {
+        width: 60,
+        height: 60
+    },
+    rightArrow: {
+        width: 24,
+        height: 24
+    },
+    list:{
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingRight: 15,
+        textAlign:'right'
+    },
+    textInput:{
+        flex: 1,
+        height:40,
+        fontSize: 17,
+        padding: 0
     }
 });

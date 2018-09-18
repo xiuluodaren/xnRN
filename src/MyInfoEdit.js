@@ -13,7 +13,11 @@ type
 Props = {};
 export default class MyInfoEdit extends Component<Props> {
     static navigationOptions = {
-        title: '信息编辑'
+        headerTitle: '信息编辑',
+        headerTitleStyle: {
+            //居中显示
+            alignSelf : 'center',
+        }
     };
 
     render() {
@@ -22,7 +26,6 @@ export default class MyInfoEdit extends Component<Props> {
             <SectionList style={styles.SectionListStyle}
              renderItem={({item, index, section}) => (
                  <TouchableOpacity onPress={() => {
-                     alert(index);
 
                      switch (index)
                      {
@@ -55,6 +58,15 @@ export default class MyInfoEdit extends Component<Props> {
                  </View>
                  </TouchableOpacity>
              }
+             ListFooterComponent={() =>
+                 <TouchableOpacity onPress={() => {
+                     alert("准备上传头像00")
+                 }}>
+                     <View  style={styles.footer}>
+                         <Text style={styles.footer}>保存</Text>
+                     </View>
+                 </TouchableOpacity>
+             }
              keyExtractor={(item, index) => item + index}
              ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#EEEEEE'}}/>}
              SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#EEEEEE'}}/>}
@@ -79,6 +91,16 @@ const styles = StyleSheet.create({
         paddingLeft: 20
     },
     header: {
+        color: '#000000',
+        textAlign: 'left',
+        flex: 1,
+        backgroundColor: '#ffffff',
+        height: 100,
+        fontSize: 17,
+        paddingTop: 40,
+        paddingLeft: 20
+    },
+    footer: {
         color: '#000000',
         textAlign: 'left',
         flex: 1,
