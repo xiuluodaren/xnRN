@@ -23,6 +23,7 @@ export default class MyInfoEdit extends Component<Props> {
     render() {
         const {navigate} = this.props.navigation;
         return (
+            <View>
             <SectionList style={styles.SectionListStyle}
              renderItem={({item, index, section}) => (
                  <TouchableOpacity onPress={() => {
@@ -58,15 +59,6 @@ export default class MyInfoEdit extends Component<Props> {
                  </View>
                  </TouchableOpacity>
              }
-             ListFooterComponent={() =>
-                 <TouchableOpacity onPress={() => {
-                     alert("准备上传头像00")
-                 }}>
-                     <View  style={styles.footer}>
-                         <Text style={styles.footer}>保存</Text>
-                     </View>
-                 </TouchableOpacity>
-             }
              keyExtractor={(item, index) => item + index}
              ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#EEEEEE'}}/>}
              SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#EEEEEE'}}/>}
@@ -74,7 +66,7 @@ export default class MyInfoEdit extends Component<Props> {
                  navigate('UpdateMobile');
              }}
             />
-
+            </View>
         );
     }
 }
@@ -112,7 +104,8 @@ const styles = StyleSheet.create({
     },
     SectionListStyle: {
         marginTop: 5,
-        backgroundColor: '#EEEEEE'
+        backgroundColor: '#EEEEEE',
+        height:400,
     },
     avatar: {
         width: 60,
