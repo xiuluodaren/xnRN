@@ -41,8 +41,8 @@ export default class MyInfoEdit extends Component<Props> {
                              {data: ["手机号", "验证码"]}
                          ]}
                          keyExtractor={(item, index) => item + index}
-                         ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#EEEEEE'}}/>}
-                         SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#EEEEEE'}}/>}
+                         ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#e9e9e9'}}/>}
+                         SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#e9e9e9'}}/>}
                          recordInteraction={() => {
                              navigate('UpdateMobile');
                          }}
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     SectionListStyle: {
         marginTop: 5,
-        backgroundColor: '#EEEEEE'
+        backgroundColor: '#e9e9e9'
     },
     avatar: {
         width: 60,
