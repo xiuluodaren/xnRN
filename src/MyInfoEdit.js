@@ -30,8 +30,13 @@ export default class MyInfoEdit extends Component<Props> {
                 <TextInput
                     style={styles.textInput}
                     placeholder={"请输入姓名"}
+                    underlineColorAndroid="transparent"
                     onChangeText={(text) => this.setState({text})}
                 />
+            )
+        }else{
+            return (
+                <Image style={styles.rightArrow} source={require("./imgs/right-arrow.png")}></Image>
             )
         }
     };
@@ -39,13 +44,23 @@ export default class MyInfoEdit extends Component<Props> {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <View>
+            <View style={{justifyContent:'flex-end'}}>
                 <SectionList style={styles.SectionListStyle}
                  renderItem={({item, index, section}) => (
                      <TouchableOpacity onPress={() => {
 
                          switch (index)
                          {
+                             case 1:
+                             {
+                                 navigate('Gender');
+                                 break;
+                             }
+                             case 3:
+                             {
+                                 navigate('Experienc');
+                                 break;
+                             }
                              case 4:
                              {
                                  navigate('UpdateMobile');
@@ -59,7 +74,6 @@ export default class MyInfoEdit extends Component<Props> {
                              {
                                  this.fun(index)
                              }
-                             <Image style={styles.rightarrow} source={require("./imgs/right-arrow.png")}></Image>
                          </View>
                      </TouchableOpacity>
                      )
@@ -81,9 +95,6 @@ export default class MyInfoEdit extends Component<Props> {
                  keyExtractor={(item, index) => item + index}
                  ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: '#e9e9e9'}}/>}
                  SectionSeparatorComponent={() => <View style={{height: 5, backgroundColor: '#e9e9e9'}}/>}
-                 recordInteraction={() => {
-                     navigate('UpdateMobile');
-                 }}
                 />
 
                 <TouchableOpacity onPress={() => {
@@ -150,7 +161,7 @@ const styles = StyleSheet.create({
     saveBtn:{
         backgroundColor:'#5ac45a',
         color:'#FFFFFF',
-        height:44,
+        height:49,
         fontSize:20,
         textAlign:'center',
         paddingTop:12
@@ -159,6 +170,8 @@ const styles = StyleSheet.create({
         flex: 1,
         height:40,
         fontSize: 17,
-        padding: 0
+        padding: 0,
+        paddingRight:24,
+        textAlign:'right'
     }
 });
