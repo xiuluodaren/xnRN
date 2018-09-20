@@ -9,11 +9,22 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, SectionList, Text, Button, View, Image, TouchableOpacity, TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
+import { decorate, observable } from "mobx";
+
 var {height, width} = Dimensions.get('window');
+
 
 type
 Props = {};
 export default class MyInfoEdit extends Component<Props> {
+
+    id = Math.random();
+    userName = "";
+
+    get unfinishedTodoCount() {
+        return this.todos.filter(todo => !todo.finished).length;
+    }
+
     static navigationOptions = {
         headerTitle: '信息编辑',
         headerTitleStyle: {
@@ -105,7 +116,7 @@ export default class MyInfoEdit extends Component<Props> {
             </View>
         );
     }
-}
+};
 
 const styles = StyleSheet.create({
     button: {
