@@ -22,14 +22,14 @@ export default class Experienc extends Component<Props> {
         }
     };
 
-
     render() {
         const {navigate} = this.props.navigation;
         return (
             <SectionList style={styles.SectionListStyle}
                  renderItem={({item, index, section}) => (
                      <TouchableOpacity onPress={() => {
-                         alert(item);
+                         alert(this.props.navigation.state.params.gender);
+                         this.props.navigation.state.params.gender = item;
                      }}>
                          <Text style={styles.button} key={index}>{item}</Text>
                      </TouchableOpacity>

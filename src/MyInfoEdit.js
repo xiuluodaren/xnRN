@@ -9,20 +9,23 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, SectionList, Text, Button, View, Image, TouchableOpacity, TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
-import { decorate, observable } from "mobx";
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 var {height, width} = Dimensions.get('window');
 
-
 type
 Props = {};
+
+@observer
 export default class MyInfoEdit extends Component<Props> {
 
     id = Math.random();
-    userName = "";
 
-    get unfinishedTodoCount() {
-        return this.todos.filter(todo => !todo.finished).length;
+    gender = "男";
+
+    componentWillMount() {
+        alert("aaaaa" + this.gender);
     }
 
     static navigationOptions = {
@@ -42,8 +45,16 @@ export default class MyInfoEdit extends Component<Props> {
                     style={styles.textInput}
                     placeholder={"请输入姓名"}
                     underlineColorAndroid="transparent"
-                    onChangeText={(text) => this.setState({text})}
+                    onChangeText={(text) => {
+                        this.userName = text;
+                    }}
                 />
+            )
+        }else if (index == 1)
+        {
+            //性别
+            return(
+                <Text style={styles.button} key={index}>{this.gender}</Text>
             )
         }else{
             return (
@@ -64,7 +75,10 @@ export default class MyInfoEdit extends Component<Props> {
                          {
                              case 1:
                              {
-                                 navigate('Gender');
+                                 //性别
+                                 navigate('Gender',{
+                                     gender:this.gender
+                                 });
                                  break;
                              }
                              case 3:
